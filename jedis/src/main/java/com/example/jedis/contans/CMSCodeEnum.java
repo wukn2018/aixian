@@ -43,6 +43,15 @@ public interface CMSCodeEnum {
             return null;
         }
 
+        public static Integer getByName(String name) {
+            for (PlanNameEnum o : values( )) {
+                if (o.getName( ).equals( name ) ) {
+                    return o.getValue();
+                }
+            }
+            return null;
+        }
+
 
     }
 }

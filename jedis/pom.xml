@@ -68,7 +68,7 @@
 			<version>2.2.2</version>
 		</dependency>
 
-
+		<!--加密-->
 		<dependency>
 			<groupId>org.mindrot</groupId>
 			<artifactId>jbcrypt</artifactId>

@@ -255,15 +255,32 @@ public class DateApiDemo {
 
     @Test
     public void test12() {
-        String password = "wu1236gdfgd4586";
+
+
+        String password = "123456";
+
+        /**
+         * 生成随机的盐
+         */
         System.out.println(BCrypt.gensalt());
+        /**
+         * 对密码password 进行加密
+         */
         String s = BCrypt.hashpw( password,BCrypt.gensalt() );
         System.out.println(s);
         String s1 = "$2a$10$4YC2JRrPVJztQK/LOqqrOO9xHf1fogplRXuSV.cOda8BOxDNdeWzm";
-        
-        System.out.println("---------------------------------");
 
 
+
+
+
+        /**
+         * 解密
+         *
+         *
+         * s1 : 是加密后的密码
+         * password : 是用户输入的密码
+         */
         Boolean b  = BCrypt.checkpw(password, s1 );
         System.out.println(b);
     }

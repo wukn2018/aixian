@@ -423,8 +423,6 @@ public class StreamApiDemo {
 
 
 
-
-
          Long l1 = list.stream()
                          /***得到集合的总数*/
                         .collect( Collectors.counting() );
