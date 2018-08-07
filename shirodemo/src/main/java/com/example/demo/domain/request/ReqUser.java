@@ -1,6 +1,8 @@
 package com.example.demo.domain.request;
 import lombok.Data;
 
+import javax.persistence.PrePersist;
+
 
 /**
  * ***GOOD LUCK****
@@ -15,7 +17,14 @@ public class ReqUser {
 
     private String username;
 
-    private Integer password;
+    private String password;
 
+    private Boolean isRememberMe;
+
+
+    @PrePersist
+    protected void onCreate() {
+        isRememberMe = true;
+    }
 
 }

@@ -20,7 +20,7 @@ public class UserEntity {
 
     private String username;
 
-    private Integer password;
+    private String password;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<RoleEntity> roles;
@@ -41,11 +41,11 @@ public class UserEntity {
         this.username = username;
     }
 
-    public Integer getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(Integer password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

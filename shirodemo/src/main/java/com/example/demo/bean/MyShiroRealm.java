@@ -12,8 +12,9 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * ***GOOD LUCK****
@@ -22,6 +23,8 @@ import org.springframework.stereotype.Component;
  * @Date : 2018/7/
  */
 public class MyShiroRealm extends AuthorizingRealm {
+
+    Logger logger = LoggerFactory.getLogger(MyShiroRealm.class  );
 
 
     @Autowired
@@ -67,13 +70,17 @@ public class MyShiroRealm extends AuthorizingRealm {
         }
         //获取用户信息
         String name = authenticationToken.getPrincipal().toString();
+        logger.info( "name" + name );
         UserEntity user = userService.findByUsername( name );
+        System.out.println(user);
         if (user == null) {
+            System.out.println("fail____________________________");
             //这里返回后会报出对应异常
             return null;
         } else {
+            System.out.println("success-----------------------");
             //这里验证authenticationToken和simpleAuthenticationInfo的信息
-            SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(name, user.getPassword().toString(), getName());
+            SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(name, user.getPassword(), getName());
             return simpleAuthenticationInfo;
         }
     }

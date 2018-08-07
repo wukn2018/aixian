@@ -7,6 +7,7 @@ import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
+import com.example.demo.util.BCryptUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private BCryptUtils bCryptUtils;
+
 
     /**
      * 根据用户名查找
@@ -38,8 +42,9 @@ public class UserServiceImpl implements UserService{
      */
     @Override
     public UserEntity findByUsername(String name) {
-        UserEntity userEntity = userRepository.findByUsername( name );
-       return userEntity;
+        List<UserEntity> userEntity = userRepository.findByUsername( name );
+        System.out.println(userEntity.get(0));
+       return userEntity.get(  0);
     }
 
 
@@ -50,8 +55,9 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserEntity addUser(ReqUser reqUser) {
         UserEntity userEntity = new UserEntity();
+        String s = bCryptUtils.getBCrypt( reqUser.getPassword().toString() );
         userEntity.setUsername( reqUser.getUsername());
-        userEntity.setPassword( reqUser.getPassword());
+        userEntity.setPassword(s);
        UserEntity userEntity1 =  userRepository.save( userEntity );
        return userEntity1;
     }
@@ -63,10 +69,10 @@ public class UserServiceImpl implements UserService{
      */
     @Override
     public RoleEntity addRole(ReqUser reqUser) {
-        UserEntity user = userRepository.findByUsername( reqUser.getUsername() );
+        List<UserEntity> userEntity = userRepository.findByUsername( reqUser.getUsername() );
         RoleEntity role = new RoleEntity();
         role.setRoleName(reqUser.getUsername());
-        role.setUser(user);
+        role.setUser(userEntity.get( 0 ));
 
         PermissionEntity permission1 = new PermissionEntity();
         permission1.setPermission("create");
@@ -92,7 +98,7 @@ public class UserServiceImpl implements UserService{
      */
     @Override
     public UserEntity findByName(String name) {
-        return userRepository.findByUsername(name);
+        return userRepository.findByUsername(name).get(  0);
     }
 
 
