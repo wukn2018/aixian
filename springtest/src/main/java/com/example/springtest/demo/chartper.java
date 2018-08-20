@@ -1,5 +1,6 @@
 package com.example.springtest.demo;
 
+import com.example.springtest.pojo.Persion;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -23,4 +24,64 @@ public class chartper {
         //3、执行业务逻辑
         helloApi.say();
     }
+
+
+    /**
+     * 通过别名去获取bean
+     */
+    @Test
+    public void test01() {
+        ApplicationContext context = new ClassPathXmlApplicationContext( "hello.xml" );
+        TestDmoApi helloApi = context.getBean("ddd1", TestDmoApi.class);
+        helloApi.say();
+    }
+
+
+
+    @Test
+    public void tst02() {
+        ApplicationContext context = new ClassPathXmlApplicationContext( "hello.xml" );
+        StudentService helloApi = context.getBean("tets1", StudentService.class);
+        helloApi.sayHello();
+    }
+
+    @Test
+    public void tst03() {
+        ApplicationContext context = new ClassPathXmlApplicationContext( "hello.xml" );
+        StudentService helloApi = context.getBean("bean3", StudentService.class);
+        helloApi.sayHello();
+    }
+
+
+
+
+
+
+    @Test
+    public void test04() {
+        ApplicationContext context = new ClassPathXmlApplicationContext( "beans.xml" );
+        Persion persion = context.getBean( "student00" , Persion.class );
+        System.out.println(persion);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
