@@ -19,7 +19,8 @@
     </bean>
 
 
-    <!--bean 配置的继承  使用bean的parent属性指定继承哪个bean的配置-->
+    <!-- parent="car00"
+    bean 配置的继承  使用bean的parent属性指定继承哪个bean的配置-->
     <bean id="address00" class="com.example.springtest.pojo.Address">
         <property name="id" value="1"></property>
         <property name="name" value="d"></property>
@@ -33,6 +34,23 @@
         <property name="name" value="dfg"></property>
         <property name="car" ref="car00"></property>
     </bean>
+
+
+
+
+
+
+    <!--
+        scope="singleton"  spring创建bean默认是单例的. 创建容器时就已经创建好
+        scope="prototype" 可以为原型的,意思是每次创建一个bean，spring容器会创建一个新的bean实例
+    -->
+    <bean id="car001" class="com.example.springtest.pojo.Car" scope="prototype">
+        <property name="carName" value="ddd"></property>
+    </bean>
+
+
+
+
 
 
 

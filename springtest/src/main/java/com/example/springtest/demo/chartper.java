@@ -1,9 +1,12 @@
 package com.example.springtest.demo;
 
+import com.example.springtest.pojo.BeanTest;
 import com.example.springtest.pojo.Persion;
+import com.example.springtest.pojo.Wkn;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.util.StringUtils;
 
 /**
  * ***GOOD LUCK****
@@ -64,12 +67,49 @@ public class chartper {
         System.out.println(persion);
     }
 
+    @Test
+    public void test05() {
+//        ApplicationContext context = new ClassPathXmlApplicationContext( "beans.xml" );
+//        Car car1 = context.getBean( "car001" , Car.class );
+//        Car car2 = context.getBean( "car001" , Car.class );
+//        System.out.println(car1 == car2);
+
+
+        Wkn wkn = new Wkn();
+        wkn.setCarName( "eeeeee" );
+        System.out.println(wkn.getCarName());
+
+
+
+    }
 
 
 
 
 
+    @Test
+    public String test06(String i , String j) {
+        if (!StringUtils.isEmpty( i )) {
+            return i;
+        }
+        if (!StringUtils.isEmpty( j )) {
+            return j;
+        }
+        return i+j+"ab";
+    }
 
+
+
+
+
+    @Test
+    public void test07() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext( "bean2.xml" );
+        BeanTest persion = context.getBean( "bean01" , BeanTest.class );
+        System.out.println(persion);
+        //关闭容器
+        context.close();
+    }
 
 
 

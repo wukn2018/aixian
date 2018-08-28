@@ -8,9 +8,11 @@ package com.example.springtest.pojo;
  */
 public class Car {
     private String carName;
+    private double tper;
 
 
     public Car() {
+        this.carName = "dddd";
     }
 
     public Car(String carName) {
@@ -25,10 +27,23 @@ public class Car {
         this.carName = carName;
     }
 
+    public double getTper() {
+        return tper;
+    }
+
+    public void setTper(double tper) {
+        this.tper = tper;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
                 "carName='" + carName + '\'' +
+                ", tper=" + tper +
                 '}';
+    }
+
+    protected void onCreate() {
+        carName = "sss";
     }
 }

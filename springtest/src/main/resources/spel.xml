@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <!--使用SpEl为属性赋值一个字面值-->
+    <bean id="c1" class="com.example.springtest.pojo.Car">
+        <property name="carName" value="#{'baoma'}"></property>
+        <property name="tper" value="#{T(java.lang.Math).PI*2}"></property>
+    </bean>
+
+    <!--s使用SpEl引用其他bean   作用和ref一样-->
+    <bean id="p1" class="com.example.springtest.pojo.Persion">
+        <property name="name" value="#{'d'}"></property>
+        <property name="car" value="#{c1}"></property>
+
+    </bean>
+
+
+
+
+
+
+
+
+
+
+</beans>
