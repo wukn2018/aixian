@@ -46,12 +46,8 @@ public class OperationLoggerProxy {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                     String methodName = method.getName();
-
                 //前置  日志
                 System.out.println("Logger"+methodName+ Arrays.asList( args));
-
-
-
 
                 //执行方法
                 Object result = null;
@@ -62,8 +58,6 @@ public class OperationLoggerProxy {
                     //异常
                     e.printStackTrace( );
                 }
-
-
 
                 //后置   日志
                 System.out.println(methodName+result+"");

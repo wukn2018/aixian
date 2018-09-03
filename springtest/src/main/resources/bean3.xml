@@ -2,16 +2,53 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--<context:component-scan base-package="com.example.springtest"></context:component-scan>-->
+
+
+
+    <!--配置目标方法的bean-->
+    <bean id="m1" class="com.example.springtest.AspectJDemo.service.MathInterImpl"></bean>
+
+
+
+    <!--配置切面bean1-->
+    <bean id = "logger1" class="com.example.springtest.AspectJDemo.Acpect.LoggerAcpectJ"></bean>
+
+    <!--配置切面bean2-->
+    <bean id="vali1" class="com.example.springtest.AspectJDemo.Acpect.VlidationAspectJ"></bean>
+
+
+    <!--配置aop-->
+    <aop:config>
+        <!--配置切点表达式-->
+        <aop:pointcut  expression="execution(* com.example.springtest.AspectJDemo.service.MateInter.*(..))" id="pointcut"></aop:pointcut>
+        <!--配置切面及通知1-->
+        <aop:aspect ref="logger1" order="1">
+            <!--前置通知-->
+            <aop:after method="beforeMethod" pointcut-ref="pointcut"></aop:after>
+            <!--后置通知-->
+            <aop:before method="beforeMethod"  pointcut-ref="pointcut"></aop:before>
+            <!--返回通知-->
+            <aop:after-returning method="returnMethod" pointcut-ref="pointcut" returning="result"></aop:after-returning>
+        </aop:aspect>
+
+        <!--配置切面及通知2-->
+        <aop:aspect ref="vali1" order="2">
+            <aop:after method="beforeVliationMethod" pointcut-ref="pointcut"></aop:after>
+        </aop:aspect>
+    </aop:config>
 
 
 
 
 
 
-    <context:component-scan base-package="com.example.springtest">
 
-    </context:component-scan>
+
 
 
 </beans>

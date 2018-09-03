@@ -23,6 +23,16 @@ public class ApplicationTest {
     }
 
 
+    @Test
+    public void test02() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext( "bean3.xml" );
+        MateInter persion = (MateInter) context.getBean( "m1" );
+        persion.add( 1 );
+        //关闭容器
+        context.close();
+    }
+
+
 
 
 

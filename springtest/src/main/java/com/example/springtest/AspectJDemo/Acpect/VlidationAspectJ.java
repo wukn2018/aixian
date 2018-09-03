@@ -29,14 +29,14 @@ public class VlidationAspectJ {
     /**
      * 申明该方法是一个前置通知，在目标方法执行之前
      */
-    @Before(  "execution(* com.example.springtest.AspectJDemo.service.MathInterImpl.add(..))" )
+    @Before(  "LoggerAcpectJ.declareJointPointExpression()" )
     public void beforeVliationMethod(JoinPoint joinPoint) {
         //方式名称
         String methodName = joinPoint.getSignature().getName();
         //参数
         List<Object> args =  Arrays.asList( joinPoint.getArgs() ) ;
         System.out.println(methodName+args);
-        System.out.println("前置参数。。。。。。。。。");
+        System.out.println("前置参数验证。。。。。。。。。");
     }
 
 

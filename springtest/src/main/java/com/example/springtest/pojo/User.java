@@ -18,19 +18,15 @@ public class User {
     /**
      * id
      */
-    private Integer id;
+    private Integer sex;
 
-
-    public User(String name) {
-        this.name = name;
-    }
-
-    public User(String name, Integer id) {
-        this.name = name;
-        this.id = id;
-    }
 
     public User() {
+    }
+
+    public User(String name, Integer sex) {
+        this.name = name;
+        this.sex = sex;
     }
 
     public String getName() {
@@ -41,11 +37,11 @@ public class User {
         this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getSex() {
+        return sex;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 }

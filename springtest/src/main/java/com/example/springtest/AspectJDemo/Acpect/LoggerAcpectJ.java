@@ -26,9 +26,23 @@ public class LoggerAcpectJ {
 
 
     /**
+     * 定义一个方法，用于申明切入点表达式，一般的该方法不需要再填入其他的代码
+     *
+     * 使用@Pointcut来申明切入点表达式
+     * 后面的其他通知直接使用方法名
+     */
+    @Pointcut("execution(* com.example.springtest.AspectJDemo.service.MathInterImpl.add(..))")
+    public void declareJointPointExpression() {
+    }
+
+
+
+
+
+    /**
      * 申明该方法是一个前置通知，在目标方法执行之前
      */
-    @Before(  "execution(* com.example.springtest.AspectJDemo.service.MathInterImpl.add(..))" )
+    @Before(  "declareJointPointExpression()" )
     public void beforeMethod(JoinPoint joinPoint) {
         //方式名称
         String methodName = joinPoint.getSignature().getName();
@@ -43,7 +57,7 @@ public class LoggerAcpectJ {
      * 后置通知，在目标方法执行后(无论改方法是否出现异常)的操作
      * 在后置通知中，还不能访问目标方法执行的结果
      */
-    @After( "execution(* com.example.springtest.AspectJDemo.service.MathInterImpl.add(..))" )
+    @After( "declareJointPointExpression()" )
     public void afterMethod(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         List<Object> args = Arrays.asList( joinPoint.getArgs() );
@@ -56,7 +70,7 @@ public class LoggerAcpectJ {
      * 在方法正常执行后执行的代码，无论该方法是否有异常
      * returning ="result"    该方法的返回值
      */
-    @AfterReturning(value = "execution(* com.example.springtest.AspectJDemo.service.MathInterImpl.add(..))",
+    @AfterReturning(value = "declareJointPointExpression()",
             returning ="result")
     public void returnMethod(JoinPoint joinPoint,Object result) {
         String methodName = joinPoint.getSignature().getName();
@@ -73,7 +87,7 @@ public class LoggerAcpectJ {
      * Exception ex  这个异常可以指定特定的异常
      *
      */
-   @AfterThrowing(value = "execution(* com.example.springtest.AspectJDemo.service.MathInterImpl.add(..))",throwing = "ex")
+   @AfterThrowing(value = "declareJointPointExpression()",throwing = "ex")
     public void MethodThrow(JoinPoint joinPoint,Exception ex) {
         String methodName = joinPoint.getSignature().getName();
         List<Object> args = Arrays.asList( joinPoint.getArgs() );
@@ -88,7 +102,7 @@ public class LoggerAcpectJ {
      * 环绕通知必须有返回值，返回值为目标方法的返回值
      * @param point
      */
-    @Around( value = "execution(* com.example.springtest.AspectJDemo.service.MathInterImpl.add(..))" )
+    @Around( value = "declareJointPointExpression()" )
     public Object aroundMethod(ProceedingJoinPoint point) {
         Object result = null;
         String methodName = point.getSignature().getName();
