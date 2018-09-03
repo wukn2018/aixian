@@ -1,12 +1,15 @@
 package com.example.springtest.demo;
 
-import com.example.springtest.pojo.BeanTest;
-import com.example.springtest.pojo.Persion;
-import com.example.springtest.pojo.Wkn;
+import com.example.springtest.pojo.*;
+import com.example.springtest.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.StringUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Optional;
 
 /**
  * ***GOOD LUCK****
@@ -113,15 +116,99 @@ public class chartper {
 
 
 
+    @Test
+    public void test08() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext( "bean2.xml" );
+        MyBeanPostProcessor persion = context.getBean( "beantest1" , MyBeanPostProcessor.class );
+        System.out.println(persion);
+        //关闭容器
+        context.close();
+    }
+
+    @Test
+    public void test09() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext( "beanFactory.xml" );
+        Car  persion = (Car) context.getBean( "carF1" );
+        System.out.println(persion);
+        //关闭容器
+        context.close();
+    }
+
+
+
+    @Test
+    public void test010() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext( "beanFactory.xml" );
+        Car  persion = (Car) context.getBean( "car4" );
+        System.out.println(persion);
+        //关闭容器
+        context.close();
+    }
+
+
+    @Test
+    public void test011() {
+//        ApplicationContext context = new ClassPathXmlApplicationContext( "configration1.xml" );
+//        UserRepositoryImpl persion = (UserRepositoryImpl) context.getBean( "userRepositoryImpl" );
+//        System.out.println(persion);
+
+        for(int i = 0;i<50;++i) {
+            System.out.println(getId());
+        }
+
+
+
+    }
+
+    private  long tmpID = 0;
+
+    private  boolean tmpIDlocked = false;
+
+    public  long getId()
+    {
+        long ltime = 0;
+        while (true)
+        {
+            if(tmpIDlocked == false)
+            {
+                tmpIDlocked = true;
+                //当前：（年、月、日、时、分、秒、毫秒）*10000
+                ltime = Long.valueOf(new SimpleDateFormat("yyMMddhhmmssSSS").format(new Date()).toString()) * 10000;
+                if(tmpID < ltime)
+                {
+                    tmpID = ltime;
+                }
+                else
+                {
+                    tmpID = tmpID + 1;
+                    ltime = tmpID;
+                }
+                tmpIDlocked = false;
+                return ltime;
+            }
+        }
+    }
 
 
 
 
 
 
+    public String test08(String str) {
+        return Optional.ofNullable( str )
+                .map( (x) -> {
+                    return "a";
+                } ).orElse( "aaa" );
+    }
 
 
 
+    @Test
+    public void test00() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
+        UserService userService = (UserService) context.getBean( "userService" );
+        userService.add();
+    }
 
 
 }

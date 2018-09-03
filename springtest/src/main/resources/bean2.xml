@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
 
@@ -15,6 +16,33 @@
           destroy-method="destroy">
         <property name="name" value="#{'测试bean'}"></property>
     </bean>
+
+
+    <!--bean的后置处理器
+
+
+            实现BeanPostProcessor接口，
+            并提供两个方法的实现   postProcessBeforeInitialization   init-method之前被调用
+                                postProcessAfterInitialization      init-method之后被调用
+
+            bean ： bean实例本身
+            beanName ：IOC容器配置的bean的名字
+            返回值：是实际上返回给用户的那个Bean
+
+
+            不需要配置需要识别的bean，后置处理器会自动识别
+
+    -->
+    <bean id="beantest1" class="com.example.springtest.pojo.MyBeanPostProcessor"></bean>
+
+
+
+
+
+
+
+
+
 
 
 

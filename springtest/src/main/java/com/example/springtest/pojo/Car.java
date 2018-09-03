@@ -11,6 +11,11 @@ public class Car {
     private double tper;
 
 
+    public Car(String carName, double tper) {
+        this.carName = carName;
+        this.tper = tper;
+    }
+
     public Car() {
         this.carName = "dddd";
     }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <!--通过静态工厂方法配置bean ，注意不是配置静态工厂方法实例，而是配置bean实例
+            class 属性; 指向静态工厂方法的全类名
+            factory-method="getCar" ： 指向静态工厂方法的名称
+            <constructor-arg name="name" value="a"></constructor-arg> ：如果工厂方法需要传参数，则需要constructor-arg 传参数
+    -->
+    <bean id="carF1" class="com.example.springtest.pojo.BeanFactoryDome" factory-method="getCar">
+        <constructor-arg name="name" value="a"></constructor-arg>
+    </bean>
+
+
+
+
+
+
+
+
+
+    <!--配置工厂的实例--><!---->
+    <bean id="caf2" class="com.example.springtest.pojo.InatanceCarFactory"></bean>
+
+
+    <!--
+            factory-bean="caf2"  ： 指向工厂的bean
+            factory-method="getCar"  ： 指向工厂的方法
+    -->
+    <bean id="carf3" factory-method="getCar" factory-bean="caf2">
+        <constructor-arg value="a"></constructor-arg>
+    </bean>
+
+
+
+
+    <!--通过FactoryBean配置Bean的实例
+    class： 指的是实现FactoryBean接口的类
+        -->
+    <bean id="car4" class="com.example.springtest.spring.CarFactoryBean">
+
+    </bean>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</beans>

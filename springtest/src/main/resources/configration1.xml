@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+
+    <!--扫描所有注解-->
+    <context:component-scan base-package="com.example.springtest.service"></context:component-scan>
+
+
+
+
+
+
+    <!-- type="annotation" 表示是通过类路径的方式
+
+    base-package扫描包，扫描含有注解的类，spring容器会实例化该注解的类
+           resource-pattern  会指定只扫描某个包下面的某个类
+           context:exclude-filter   子节点指定排除哪些指定表达式组件
+           context:include-filter  只包含   在使用这个时，，需要use-default-filters="false"指定false
+    -->
+    <!--<context:component-scan-->
+            <!--base-package="com.example.springtest.configration" use-default-filters="false">-->
+        <!--&lt;!&ndash;<context:exclude-filter type="annotation" expression="com.example.springtest.configration.TestObject"></context:exclude-filter>&ndash;&gt;-->
+
+        <!--<context:include-filter type="annotation" expression="com.example.springtest.configration.epository"></context:include-filter>-->
+    <!--</context:component-scan>-->
+
+
+
+
+    <!--&lt;!&ndash; type="assignable" 表示是通过类名的方式-->
+
+    <!--base-package扫描包，扫描含有注解的类，spring容器会实例化该注解的类-->
+           <!--resource-pattern  会指定只扫描某个包下面的某个类-->
+           <!--context:exclude-filter   子节点指定排除哪些指定表达式组件-->
+           <!--context:include-filter  只包含   在使用这个时，，需要use-default-filters="false"指定false-->
+    <!--&ndash;&gt;-->
+    <!--<context:component-scan-->
+            <!--base-package="com.example.springtest.configration" use-default-filters="false">-->
+        <!--&lt;!&ndash;type="assignable" 表示是通过类名的方式-->
+        <!--<context:exclude-filter type="annotation" expression="com.example.springtest.configration.TestObject"></context:exclude-filter>&ndash;&gt;-->
+        <!--<context:include-filter type="assignable" expression="com.example.springtest.configration.repository.UserRepository"></context:include-filter>-->
+    <!--</context:component-scan>-->
+
+
+
+
+
+
+
+
+
+
+
+
+</beans>
