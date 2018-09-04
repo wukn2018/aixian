@@ -1,7 +1,7 @@
-package com.example.springtest.service;
+package com.example.springbootdemo.service;
 
-import com.example.springtest.entity.UserEntity;
-import com.example.springtest.repository.UserJpa;
+import com.example.springbootdemo.entity.UserEntity;
+import com.example.springbootdemo.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
  * @Date : 2018/6/
  */
 @Service
-public class UserJpaService {
+public class UserService {
 
 
     @Autowired
-    private UserJpa userJpa;
+    private UserRepository userJpa;
 
     Logger logger = LoggerFactory.getLogger( UserService.class );
 
@@ -39,7 +39,7 @@ public class UserJpaService {
      * 最常用的取值  isolation = Isolation.READ_COMMITTED  读已提交
      *
      * 默认情况下spring的申明事事务对所有的运行时异常进行回滚也可以通过对应的属性设置
-     *noRollbackFor  对那些异常不进行回滚
+     *noRollbackFor  对哪些异常不进行回滚
      * rollbackFor  对那些异常进行回滚
      * 通过情况下取默认值
      *
@@ -52,10 +52,8 @@ public class UserJpaService {
      *timeout = 1  设置事务的链接时间
      *
      */
-    @Transactional(propagation = Propagation.REQUIRES_NEW,
-                    isolation = Isolation.READ_COMMITTED
-                    )
-    public UserEntity finaUserByNAME(String name , int sex) {
+    @Transactional(rollbackFor = Exception.class)
+    public UserEntity finaUserByNAME(String name , int sex) throws Exception{
         return userJpa.findUserEntityByNameAndSex( name,sex );
     }
 

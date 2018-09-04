@@ -37,7 +37,7 @@ public class StudentController {
     @ResponseBody
     public ResultClient save( @RequestBody @Valid Student student, BindingResult result) throws Exception{
         logger.info( student+"" );
-//        List<String> list1 = new ArrayList <>(  );
+//          List<String> list1 = new ArrayList <>(  );
 //        if(result.hasErrors()) {
 //           List<ObjectError> list =  result.getAllErrors();
 //           for (ObjectError ob:list) {
